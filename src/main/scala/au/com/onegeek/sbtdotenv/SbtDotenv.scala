@@ -76,6 +76,10 @@ object SbtDotenv extends AutoPlugin {
 
   def loadAndExpand(state: State, fileName: String): Option[Map[String, String]] = {
     val baseDirectory = state.configuration.baseDirectory
+    state.log.info(
+      s"""###
+         |state.currentCommand: ${state.currentCommand}
+         |""".stripMargin)
     state.log.debug(s"Base directory: ${baseDirectory}")
     state.log.debug(s"looking for .env file: ${baseDirectory}/${fileName}")
     val dotEnvFile: File = new File(s"${baseDirectory}/${fileName}")
